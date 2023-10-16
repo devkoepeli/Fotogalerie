@@ -18,19 +18,19 @@ const images = [
 ];
 
 function render() {
-    // Hole das HTML-Element mit der ID 'container'
-    const container = document.getElementById('container');
+    // Hole das HTML-Element mit der ID 'gallery-container'
+    const gallery = document.getElementById('gallery-item');
 
-    // Überprüfe, ob das 'container'-Element existiert
-    if (container) {
-        // Verwende .innerHTML, um den HTML-Inhalt des 'container'-Elements zu setzen
-        container.innerHTML = '';
+    // Überprüfe, ob das 'gallery-container'-Element existiert
+    if (gallery) {
+        // Verwende .innerHTML, um den HTML-Inhalt des 'gallery-container'-Elements zu setzen
+        gallery.innerHTML = '';
 
         // Iteriere durch das 'images'-Array und füge jedes Bild dem HTML-Inhalt hinzu
         images.forEach(image => {
-            container.innerHTML += `<img src="${image}" alt="Bild">`;
+            gallery.innerHTML += `<img class="gallery-item-img" src="${image}" alt="Bild">`;
         });
     } else {
-        console.error("Das 'container'-Element wurde nicht gefunden.");
+        console.error("Das 'gallery-item'-Element wurde nicht gefunden.");
     }
 }
