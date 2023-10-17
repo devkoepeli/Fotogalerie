@@ -1,4 +1,4 @@
-const images = [
+let images = [
     "/img/img1.jpg",
     "/img/img2.jpg",
     "/img/img3.jpg",
@@ -14,23 +14,57 @@ const images = [
     "/img/img13.jpg",
     "/img/img14.jpg",
     "/img/img15.jpg",
-    "/img/img16.jpg"
 ];
 
+
+let slideIndex = 0;
+
+
 function render() {
-    // Hole das HTML-Element mit der ID 'gallery-container'
-    const gallery = document.getElementById('gallery-item');
+    let gallery = document.getElementById('gallery-item');
 
     // Überprüfe, ob das 'gallery-container'-Element existiert
     if (gallery) {
-        // Verwende .innerHTML, um den HTML-Inhalt des 'gallery-container'-Elements zu setzen
         gallery.innerHTML = '';
 
         // Iteriere durch das 'images'-Array und füge jedes Bild dem HTML-Inhalt hinzu
-        images.forEach(image => {
-            gallery.innerHTML += `<img class="gallery-item-img" src="${image}" alt="Bild">`;
-        });
+        for (let i = 0; i < images.length; i++) {
+            const image = images[i];
+            gallery.innerHTML += `<img onclick="openModal(${i})" class="gallery-item-img" src="${image}" alt="Bild">`;
+        }
     } else {
         console.error("Das 'gallery-item'-Element wurde nicht gefunden.");
     }
+}
+
+
+function openModal(index) {
+    slideIndex = index;
+    document.getElementById('myModal').style.display = 'block';
+    showSlides();
+}
+
+
+function closeModal() {
+    document.getElementById('myModal').style.display = 'none';
+}
+
+
+function plusSlides(n) {
+    slideIndex += n;
+    showSlides();
+}
+
+
+function showSlides() {
+    let expandedImage = document.getElementById('expandedImage');
+
+    if (slideIndex >= images.length) {
+        slideIndex = 0;
+    }
+    if (slideIndex < 0) {
+        slideIndex = images.length - 1;
+    }
+
+    expandedImage.src = images[slideIndex];
 }
