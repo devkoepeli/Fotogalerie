@@ -17,7 +17,7 @@ let images = [
 ];
 
 
-let slideIndex = 0;
+let slideIndex = 0; // index of the element in the array
 
 
 function render() {
@@ -38,7 +38,7 @@ function render() {
 }
 
 
-function openModal(index) {
+function openModal(index) { // pop up window that is displayed on top of the page
     slideIndex = index;
     document.getElementById('myModal').style.display = 'block';
     showSlides();
@@ -57,14 +57,15 @@ function plusSlides(n) {
 
 
 function showSlides() {
-    let expandedImage = document.getElementById('expandedImage');
+    let imageContainer = document.getElementById('image-container');
 
     if (slideIndex >= images.length) {
         slideIndex = 0;
     }
-    if (slideIndex < 0) {
+    if (slideIndex < 0) { // only if slideIndex < 0 then display the last Element of the array 
         slideIndex = images.length - 1;
     }
 
-    expandedImage.src = images[slideIndex];
+    imageContainer.innerHTML = `<img src="${images[slideIndex]}" id="expandedImage" class="expanded-image">`;
+    // images[slideIndex] returns the name of the image
 }
